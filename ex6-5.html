@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>基于jQuery的表单验证</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      body{
+        font-size:13px;
+      }
+      .mainDiv{
+        border:2px solid #C8DCDB;
+        width:900px;
+        margin:0px auto;
+        border-top-left-radius:20px;
+        border-top-right-radius:20px;
+        overflow:hidden;
+      }
+      .title{
+        background-color:#94BFE2;
+        border-bottom:1px solid #C8DCDB;
+        height:50px;
+        line-height:50px;
+        font-weight:bold;
+        padding-left:10px;
+        font-size:15px;
+      }
+      .line{
+        width:700px;
+        height:30px;
+        line-height:30px;
+        font-weight:bold;
+        margin:0px auto;
+        margin-top:30px;
+        border-bottom:1px solid #C8DCDB;
+      }
+      .item{
+        width:700px;
+        display:flex;
+        margin:10px auto;
+      }
+      .item div:nth-of-type(1){
+        width:100px;
+        text-align:right;
+      }
+      .item div:nth-of-type(2){
+        width:600px;
+      }
+      .txt1{
+        width:200px;
+      }
+      .txt2{
+        width:300px;
+      }
+      .txt3{
+        width:500px;
+        height:100px;
+      }
+      span{
+        color:red;
+        margin-left:20px;
+      	display:none;
+      }
+       p{
+      	text-align: center;
+      	margin-top:50px;
+      }
+    </style>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+    	  $("form").submit(function(){    		  
+    		  $("#nameSpan").hide();
+    		  $("#pwdSpan").hide();
+    		  $("#checkpwdSpan").hide();
+    		  $("#telSpan").hide();
+    		  $("#mailSpan").hide();
+    		  
+    		  if($("#userName").val() == ""){
+    			  $("#nameSpan").show();
+    			  $("#userName").focus();
+    			  return false;
+    		  }
+    		  else if($("#password").val() == ""){
+    			  $("#pwdSpan").show();
+    			  $("#password").focus();
+    			  return false;
+    		  }
+    		  else if($("#password").val() != $("#checkpwd").val()){
+    			  $("#checkpwdSpan").show();
+    			  $("#checkpwd").focus();
+    			  return false;
+    		  }
+    		  else if($("#tel").val() == ""){
+    			  $("#telSpan").show();
+    			  $("#tel").focus();
+    			  return false;
+    		  }
+    		  else if($("#mailBox").val() == ""){
+    			  $("#mailSpan").show();
+    			  $("#mailBox").focus();
+    			  return false;
+    		  }
+    	  });
+      })
+    </script>
+  </head>
+  <body>
+    
+    <form method="get" action="http://www.baidu.com">
+    <div class="mainDiv">      
+      <!--表格的title-->
+      <div class="title">注册新会员</div>      
+      <!--基本信息-->
+      <div class="line">基本信息（必填）</div>
+      <div class="item">
+        <div>会员名称：</div>
+        <div><input type="text" id="userName" name="userName" class="txt1" /><span id="nameSpan">会员名称不能为空！</span></div>
+      </div>
+      <div class="item">
+        <div>密码：</div>
+        <div><input type="password" id="password" name="password" class="txt1" /><span id="pwdSpan">密码不能为空！</span></div>
+      </div>
+      <div class="item">
+        <div>确认密码：</div>
+        <div><input type="password" id="checkpwd" name="checkpwd" class="txt1" /><span id="checkpwdSpan">两次输入的密码不一致！</span></div>
+      </div>
+      <div class="item">
+        <div>性别：</div>
+        <div>
+          <input type="radio" name="sex" value="男" checked/>先生
+          <input type="radio" name="sex" value="女" />女士
+        </div>
+      </div>
+      <div class="item">
+        <div>会员类型：</div>
+        <div>
+          <select name="userType">
+            <option value="1">普通会员</option>
+            <option value="2" selected>VIP 会员</option>
+            <option value="3">白金会员</option>
+          </select>
+        </div>
+      </div>
+      <div class="item">
+        <div>联系电话：</div>
+        <div><input type="text" id="tel" name="tel" class="txt1" /><span id="telSpan">联系电话不能为空！</span></div>
+      </div>
+      <div class="item">
+        <div>邮件地址：</div>
+        <div><input type="text" id="mailBox" name="mailBox" class="txt2" /><span id="mailSpan">邮件地址不能为空！</span></div>
+      </div>
+      
+      <!--其他信息-->
+      <div class="line">其他信息（选填）</div>
+      <div class="item">
+        <div>头像：</div>
+        <div><input type="file" name="photo" /></div>
+      </div>
+      <div class="item">
+        <div>爱好：</div>
+        <div>
+          <input type="checkbox" name="like" value="1" checked/>旅行
+          <input type="checkbox" name="like" value="2" />唱歌
+          <input type="checkbox" name="like" value="3" checked/>游戏
+          <input type="checkbox" name="like" value="4" />乐器
+          <input type="checkbox" name="like" value="5" />表演
+        </div>
+      </div>
+      <div class="item">
+        <div>个人简介：</div>
+        <div><textarea name="remark" class="txt3"></textarea></div>
+      </div>
+      
+      <!--提交按扭-->
+      <div class="item">
+        <div></div>
+        <div>
+          <input type="submit" value="我要注册" />
+          &nbsp;&nbsp;&nbsp;
+          <input type="reset" value="重 写" />
+        </div>
+      </div>
+    </div>
+    </form>
+     <p><a href="index.html">返回首页</a></p>
+  </body>
+</html>
+
